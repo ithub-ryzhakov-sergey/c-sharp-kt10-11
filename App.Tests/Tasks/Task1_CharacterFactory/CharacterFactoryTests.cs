@@ -9,11 +9,11 @@ namespace App.Tests.Tasks.Task1_CharacterFactory;
 public class CharacterFactoryTests
 {
     [Test]
-    public void Warrior_Attack_PrintsExpectedMessage()
+    public void Warrior_Attack_PrintsExpectedMessage_AndNameFromEnum()
     {
         // Arrange
         var factory = new CharacterFactory<Warrior>();
-        var warrior = factory.Create("Арагорн");
+        var warrior = factory.Create(WariorType.Warrior);
         using var sw = new StringWriter();
         Console.SetOut(sw);
 
@@ -23,15 +23,15 @@ public class CharacterFactoryTests
         // Assert
         var output = sw.ToString().Trim();
         Assert.That(output, Is.EqualTo("Воин наносит удар мечом!"));
-        Assert.That(warrior.Name, Is.EqualTo("Арагорн"));
+        Assert.That(warrior.Name, Is.EqualTo(WariorType.Warrior));
     }
 
     [Test]
-    public void Mage_Attack_PrintsExpectedMessage()
+    public void Mage_Attack_PrintsExpectedMessage_AndNameFromEnum()
     {
         // Arrange
         var factory = new CharacterFactory<Mage>();
-        var mage = factory.Create("Гэндальф");
+        var mage = factory.Create(WariorType.Mage);
         using var sw = new StringWriter();
         Console.SetOut(sw);
 
@@ -41,25 +41,25 @@ public class CharacterFactoryTests
         // Assert
         var output = sw.ToString().Trim();
         Assert.That(output, Is.EqualTo("Маг кастует огненный шар!"));
-        Assert.That(mage.Name, Is.EqualTo("Гэндальф"));
+        Assert.That(mage.Name, Is.EqualTo(WariorType.Mage));
     }
 
     [Test]
-    public void Factory_CreatesDistinctTypes_WithCorrectNames()
+    public void Factory_CreatesDistinctTypes_WithCorrectEnumBasedNames()
     {
         // Arrange
         var warriorFactory = new CharacterFactory<Warrior>();
         var mageFactory = new CharacterFactory<Mage>();
 
         // Act
-        var warrior = warriorFactory.Create("Боромир");
-        var mage = mageFactory.Create("Радагаст");
+        var warrior = warriorFactory.Create(WariorType.Warrior);
+        var mage = mageFactory.Create(WariorType.Mage);
 
         // Assert
         Assert.That(warrior, Is.Not.Null);
         Assert.That(mage, Is.Not.Null);
-        Assert.That(warrior.Name, Is.EqualTo("Боромир"));
-        Assert.That(mage.Name, Is.EqualTo("Радагаст"));
+        Assert.That(warrior.Name, Is.EqualTo(WariorType.Warrior));
+        Assert.That(mage.Name, Is.EqualTo(WariorType.Mage));
         Assert.That(warrior, Is.InstanceOf<ICharacter>());
         Assert.That(mage, Is.InstanceOf<ICharacter>());
     }
