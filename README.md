@@ -54,13 +54,13 @@
 Требования:
 - Создайте enum `WariorType` с элементами: `Warrior`, `Mage`.
 - Создайте интерфейс `ICharacter`:
-  - Свойство `string Name { get; set; }`
+  - Свойство `WariorType Type { get; set; }`
   - Метод `void Attack()`
 - Создайте классы `Warrior` и `Mage`, реализующие `ICharacter`.
   - `Warrior.Attack()` выводит: `"Воин наносит удар мечом!"`
   - `Mage.Attack()` выводит: `"Маг кастует огненный шар!"`
 - Создайте обобщённый класс `CharacterFactory<T>` с ограничением `where T : ICharacter, new()`.
-  - Метод `Create(WariorType name)` создаёт `new T()`, присваивает `Name = name` и возвращает его.
+  - Метод `Create(WariorType type)` создаёт `new T()`, присваивает `Name = name` и возвращает его.
 - Демонстрация: с помощью фабрики создайте по одному «воина» и «мага», задайте имена и вызовите `Attack()`.
 
 ---

@@ -23,11 +23,11 @@ public class CharacterFactoryTests
         // Assert
         var output = sw.ToString().Trim();
         Assert.That(output, Is.EqualTo("Воин наносит удар мечом!"));
-        Assert.That(warrior.Name, Is.EqualTo(WariorType.Warrior));
+        Assert.That(warrior.Type, Is.EqualTo(WariorType.Warrior));
     }
 
     [Test]
-    public void Mage_Attack_PrintsExpectedMessage_AndNameFromEnum()
+    public void Mage_Attack_PrintsExpectedMessage_AndType()
     {
         // Arrange
         var factory = new CharacterFactory<Mage>();
@@ -41,11 +41,11 @@ public class CharacterFactoryTests
         // Assert
         var output = sw.ToString().Trim();
         Assert.That(output, Is.EqualTo("Маг кастует огненный шар!"));
-        Assert.That(mage.Name, Is.EqualTo(WariorType.Mage));
+        Assert.That(mage.Type, Is.EqualTo(WariorType.Mage));
     }
 
     [Test]
-    public void Factory_CreatesDistinctTypes_WithCorrectEnumBasedNames()
+    public void Factory_CreatesDistinctTypes_WithCorrectType()
     {
         // Arrange
         var warriorFactory = new CharacterFactory<Warrior>();
@@ -58,8 +58,8 @@ public class CharacterFactoryTests
         // Assert
         Assert.That(warrior, Is.Not.Null);
         Assert.That(mage, Is.Not.Null);
-        Assert.That(warrior.Name, Is.EqualTo(WariorType.Warrior));
-        Assert.That(mage.Name, Is.EqualTo(WariorType.Mage));
+        Assert.That(warrior.Type, Is.EqualTo(WariorType.Warrior));
+        Assert.That(mage.Type, Is.EqualTo(WariorType.Mage));
         Assert.That(warrior, Is.InstanceOf<ICharacter>());
         Assert.That(mage, Is.InstanceOf<ICharacter>());
     }
