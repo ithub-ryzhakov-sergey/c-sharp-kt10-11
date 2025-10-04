@@ -1,3 +1,5 @@
+using System.Xml.Linq;
+
 namespace App.Tasks.Task1_CharacterFactory;
 
 public enum WariorType
@@ -7,14 +9,14 @@ public enum WariorType
 
 public interface ICharacter
 {
-    public WariorType Type { get; set; }
+    public string Name { get; set; }
 
     public void Attack();
 }
 
 public class Warrior : ICharacter
 {
-    public WariorType Type { get; set; } = WariorType.Warrior;
+    public string Name { get; set; } 
     public void Attack()
     {
         Console.WriteLine("Воин наносит удар мечом!");
@@ -23,7 +25,7 @@ public class Warrior : ICharacter
 
 public class Mage : ICharacter
 {
-    public WariorType Type { get; set; } = WariorType.Mage;
+    public string Name { get; set; }
     public void Attack()
     {
         Console.WriteLine("Маг кастует огненный шар!");
@@ -32,10 +34,10 @@ public class Mage : ICharacter
 
 public class CharacterFactory<T> where T : ICharacter, new()
 {
-    public T Create(WariorType type)
+    public T Create(string name)
     {
         T character = new T();
-        character.Type = type;
+        character.Name = name;
         return character;
     }
 }
