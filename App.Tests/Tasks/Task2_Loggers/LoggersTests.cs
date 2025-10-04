@@ -3,8 +3,8 @@ using System.IO;
 using System.Text;
 using App.Tasks.Task2_Loggers;
 using NUnit.Framework;
-
 namespace App.Tests.Tasks.Task2_Loggers;
+
 
 [TestFixture]
 public class LoggersTests
