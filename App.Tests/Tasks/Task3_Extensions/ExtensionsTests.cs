@@ -1,26 +1,26 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 using App.Tasks.Task3_Extensions;
 using NUnit.Framework;
 
 namespace App.Tests.Tasks.Task3_Extensions;
 
 [TestFixture]
-public class ExtensionsTests
+public class ExtensionTests
 {
     [Test]
-    public void PrintToConsole_Employees_PrintsFormattedLines()
+    public void PrintToConsole_Employee_PrintsFormattedLine()
     {
         // Arrange
         var employees = new List<Employee>
         {
             new Employee { Id = 1, FullName = "Иван Петров", Position = "Разработчик" },
-            new Employee { Id = 2, FullName = "Анна Смирнова", Position = "Тестировщик" },
+            new Employee { Id = 2, FullName = "Анна Сидорова", Position = "Тестировщик" }
         };
-        using var sw = new StringWriter(new StringBuilder());
+
+        using var sw = new StringWriter();
         Console.SetOut(sw);
 
         // Act
@@ -30,19 +30,19 @@ public class ExtensionsTests
         var lines = sw.ToString().Trim().Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         Assert.That(lines.Length, Is.EqualTo(2));
         Assert.That(lines[0], Is.EqualTo("ID: 1, Имя: Иван Петров, Должность: Разработчик"));
-        Assert.That(lines[1], Is.EqualTo("ID: 2, Имя: Анна Смирнова, Должность: Тестировщик"));
+        Assert.That(lines[1], Is.EqualTo("ID: 2, Имя: Анна Сидорова, Должность: Тестировщик"));
     }
 
     [Test]
-    public void PrintToConsole_ProductsArray_PrintsFormattedLines()
+    public void PrintToConsole_Product_PrintsFormattedLine()
     {
         // Arrange
-        var products = new[]
-        {
+        var products = new[] {
             new Product { Sku = "A123", Name = "Чайник", Price = 1500.00m },
-            new Product { Sku = "B456", Name = "Тoster", Price = 3499.99m },
+            new Product { Sku = "B456", Name = "Тостер", Price = 899.99m }
         };
-        using var sw = new StringWriter(new StringBuilder());
+
+        using var sw = new StringWriter();
         Console.SetOut(sw);
 
         // Act
@@ -52,7 +52,7 @@ public class ExtensionsTests
         var lines = sw.ToString().Trim().Split(new[] { Environment.NewLine }, StringSplitOptions.None);
         Assert.That(lines.Length, Is.EqualTo(2));
         Assert.That(lines[0], Is.EqualTo("Артикул: A123, Название: Чайник, Цена: 1500.00"));
-        Assert.That(lines[1], Is.EqualTo("Артикул: B456, Название: Тoster, Цена: 3499.99"));
+        Assert.That(lines[1], Is.EqualTo("Артикул: B456, Название: Тостер, Цена: 899.99"));
     }
 
     [Test]
@@ -60,7 +60,7 @@ public class ExtensionsTests
     {
         // Arrange
         var products = Array.Empty<Product>();
-        using var sw = new StringWriter(new StringBuilder());
+        using var sw = new StringWriter();
         Console.SetOut(sw);
 
         // Act

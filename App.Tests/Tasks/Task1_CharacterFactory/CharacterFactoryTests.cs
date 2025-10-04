@@ -3,17 +3,17 @@ using System.IO;
 using App.Tasks.Task1_CharacterFactory;
 using NUnit.Framework;
 
-namespace App.Tests.Tasks.Task1_CharacterFactory;
+namespace App.Tests.Tasks.Tasks.CharacterFactory;
 
 [TestFixture]
 public class CharacterFactoryTests
 {
     [Test]
-    public void Warrior_Attack_PrintsExpectedMessage_AndNameFromEnum()
+    public void Warrior_Attack_PrintsExpectedMessage_AndTypeFromEnum()
     {
         // Arrange
         var factory = new CharacterFactory<Warrior>();
-        var warrior = factory.Create(WariorType.Warrior);
+        var warrior = factory.Create(WariorType.Warrior, "TestWarrior");
         using var sw = new StringWriter();
         Console.SetOut(sw);
 
@@ -31,7 +31,7 @@ public class CharacterFactoryTests
     {
         // Arrange
         var factory = new CharacterFactory<Mage>();
-        var mage = factory.Create(WariorType.Mage);
+        var mage = factory.Create(WariorType.Mage, "TestMage");
         using var sw = new StringWriter();
         Console.SetOut(sw);
 
@@ -45,15 +45,15 @@ public class CharacterFactoryTests
     }
 
     [Test]
-    public void Factory_CreatesDistinctTypes_WithCorrectType()
+    public void Factory_CreatesCorrectTypes_WithCorrectType()
     {
         // Arrange
         var warriorFactory = new CharacterFactory<Warrior>();
         var mageFactory = new CharacterFactory<Mage>();
 
         // Act
-        var warrior = warriorFactory.Create(WariorType.Warrior);
-        var mage = mageFactory.Create(WariorType.Mage);
+        var warrior = warriorFactory.Create(WariorType.Warrior, "Warrior1");
+        var mage = mageFactory.Create(WariorType.Mage, "Mage1");
 
         // Assert
         Assert.That(warrior, Is.Not.Null);
@@ -63,7 +63,4 @@ public class CharacterFactoryTests
         Assert.That(warrior, Is.InstanceOf<ICharacter>());
         Assert.That(mage, Is.InstanceOf<ICharacter>());
     }
-
-    // Примечание: ограничения обобщения (ICharacter, new()) проверяются компилятором.
-    // Создание CharacterFactory<НесоответствующийТип> должно давать ошибку компиляции, поэтому это не тестируется в runtime.
 }
