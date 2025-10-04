@@ -1,6 +1,6 @@
 using System;
 using System.IO;
-using App.Tasks.Task1_CharacterFactory;
+using App.Tasks;
 using NUnit.Framework;
 
 namespace App.Tests.Tasks.Task1_CharacterFactory;
