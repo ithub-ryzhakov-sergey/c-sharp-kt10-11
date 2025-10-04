@@ -23,7 +23,7 @@ public class CharacterFactoryTests
         // Assert
         var output = sw.ToString().Trim();
         Assert.That(output, Is.EqualTo("Воин наносит удар мечом!"));
-        Assert.That(warrior.Type, Is.EqualTo("warior"));
+        Assert.That(warrior.Name, Is.EqualTo("warior"));
     }
 
     [Test]
@@ -58,7 +58,7 @@ public class CharacterFactoryTests
         // Assert
         Assert.That(warrior, Is.Not.Null);
         Assert.That(mage, Is.Not.Null);
-        Assert.That(warrior.Type, Is.EqualTo("warior"));
+        Assert.That(warrior.Name, Is.EqualTo("warior"));
         Assert.That(mage.Type, Is.EqualTo("mage"));
         Assert.That(warrior, Is.InstanceOf<ICharacter>());
         Assert.That(mage, Is.InstanceOf<ICharacter>());
