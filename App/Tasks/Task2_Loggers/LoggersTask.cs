@@ -31,7 +31,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Console.WriteLine("=== Демонстрация ObjectLogger ===");
+        Console.WriteLine("Демонстрация ObjectLogger");
 
         var stringLogger = new ObjectLogger<string>();
         stringLogger.Log("hello");
@@ -41,7 +41,7 @@ class Program
         objectLogger.Log(new { Name = "Test", Value = 123 });
         objectLogger.Log(null);
 
-        Console.WriteLine("\n=== Демонстрация ValueLogger ===");
+        Console.WriteLine("\nДемонстрация ValueLogger");
 
         var dateTimeLogger = new ValueLogger<DateTime>();
         dateTimeLogger.Log(DateTime.Now);
@@ -55,7 +55,7 @@ class Program
         var boolLogger = new ValueLogger<bool>();
         boolLogger.Log(true);
 
-        Console.WriteLine("\n=== Попытка создания неправильных логгеров ===");
+        Console.WriteLine("\nПопытка создания неправильных логгеров");
 
         Console.WriteLine("Программа завершена успешно!");
     }
